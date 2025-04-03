@@ -32,10 +32,18 @@ class SemanticRelease:
     #     )
 
     @function
-    async def version(self) -> str:
+    async def version(self) -> Container:
         """Returns the string argument provided"""
-        return "v.0.0.0"
-
+        return(
+            dag.container()
+            .from_("ghcr.io/bcit-ltc/semantic-release:latest")
+            .with_workdir("/app") 
+            .with_new_file(
+            "/app/hello.txt",
+            contents=f"""Helloo World""",
+            )
+        )
+        
     @function
     def env(self) -> Container:
         """Returns a container with the necessary environment for git and gh"""
