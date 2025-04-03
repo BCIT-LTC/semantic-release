@@ -34,7 +34,7 @@ class SemanticRelease:
     @function
     async def version(self) -> Container:
         """Returns the string argument provided"""
-        return(
+        return await(
             dag.container()
             .from_("ghcr.io/bcit-ltc/semantic-release:latest")
             .with_workdir("/app") 
