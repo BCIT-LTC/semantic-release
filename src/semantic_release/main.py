@@ -32,7 +32,7 @@ class SemanticRelease:
     #     )
 
     @function
-    async def version(self) -> Container:
+    async def version(self) -> str:
         """Returns the string argument provided"""
         return await(
             dag.container()
@@ -41,7 +41,8 @@ class SemanticRelease:
             .with_new_file(
             "/app/hello.txt",
             contents=f"""Helloo World""",
-            )
+            ).with_exec(["cat", "/app/hello.txt"])
+            .stdout()
         )
         
     @function
